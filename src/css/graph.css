@@ -1,0 +1,109 @@
+/* Основной контейнер для всех графиков */
+.graphs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Контейнер для графиков */
+  .graph {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Заголовок графиков */
+  .graph h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  /* Селектор периода для XP графика */
+  .period-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .period-selector label {
+    font-size: 1em;
+    color: #333;
+  }
+  
+  .period-selector select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
+  /* Графики Recharts */
+  .recharts-wrapper {
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* Стиль для полос в аудите */
+  .audit-ratio {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .audit-ratio__bars {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .audit-ratio__bar {
+    height: 20px;
+    border-radius: 10px;
+  }
+  
+  .audit-ratio__bar--done {
+    background-color: #4caf50;
+    flex: 1;
+  }
+  
+  .audit-ratio__bar--received {
+    background-color: #f44336;
+    flex: 1;
+  }
+  
+  .audit-ratio__info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    color: #666;
+  }
+  
+  .audit-ratio__info-item {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .audit-ratio__result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .audit-ratio__result-number {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  .audit-ratio__result-label {
+    font-size: 1em;
+    color: #333;
+  }
+  
