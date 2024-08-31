@@ -1,34 +1,28 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import {jwtDecode} from 'jwt-decode'; // Исправленный импорт
-
-const USER_PROFILE = gql`
-  query GetUserProfile($id: Int!) {
-    user(where: { id: { _eq: $id } }) {
-      id
-      login
-    }
-  }
-`;
+import { USER_PROFILE } from './apiConect';
+import '../css/profile.css';
 
 const Profile = () => {
   const token = localStorage.getItem('jwt');
-
-  // Проверка токена перед декодированием
-  console.log('Token from localStorage:', token);
 
   let userId;
   try {
     if (!token || token.split('.').length !== 3) {
       throw new Error('Invalid token format');
     }
-    
-    const decodedToken = jwtDecode(token);
-    console.log('Decoded Token:', decodedToken); // Логируем декодированный токен
 
-    // Проверяем наличие необходимых данных в декодированном токене
-    if (decodedToken['https://hasura.io/jwt/claims'] && decodedToken['https://hasura.io/jwt/claims']['x-hasura-user-id']) {
-      userId = parseInt(decodedToken['https://hasura.io/jwt/claims']['x-hasura-user-id'], 10);
+    const decodedToken = jwtDecode(token);
+
+    if (
+      decodedToken['https://hasura.io/jwt/claims'] &&
+      decodedToken['https://hasura.io/jwt/claims']['x-hasura-user-id']
+    ) {
+      userId = parseInt(
+        decodedToken['https://hasura.io/jwt/claims']['x-hasura-user-id'],
+        10
+      );
     } else {
       throw new Error('Invalid claims in token');
     }
@@ -38,28 +32,47 @@ const Profile = () => {
   }
 
   const { loading, error, data } = useQuery(USER_PROFILE, {
-    skip: !userId,  // Пропуск запроса, если нет userId
+    skip: !userId, // Пропуск запроса, если нет userId
     variables: { id: userId },
   });
 
   if (userId === null) {
-    return <p>No valid token found.</p>;  // Если userId не удалось извлечь
+    return <p>No valid token found.</p>; // Если userId не удалось извлечь
   }
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   if (!data || !data.user || data.user.length === 0) {
-    return <p>No user data found.</p>;  // Если данные пользователя не найдены
+    return <p>No user data found.</p>; // Если данные пользователя не найдены
   }
 
-  const { login } = data.user[0];
+  const { login, firstName, lastName } = data.user[0];
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwt');
+    window.location.reload();
+  };
 
   return (
-    <div>
-      <h2>User Profile</h2>
-      <p>Login: {login}</p>
-    </div>
+    <><header className="header">
+      <div className="logo">
+        <h1>GQL</h1>
+      </div>
+      <div className="user-container">
+        <span className="login ">
+          <p>{login}</p>
+        </span>
+        <button className="logout-button" onClick={handleLogout}>
+        <span class="material-symbols-outlined">
+        logout
+        </span>
+        </button>
+      </div>
+    </header>
+    <div className='title'>
+        <h2>Welcome, {firstName} {lastName} </h2>
+    </div></>
   );
 };
 

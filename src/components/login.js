@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../css/login.css'; 
 
 const BASE_URL = 'https://01.kood.tech/api';
 
@@ -47,7 +48,7 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <div>
+    <div className='login-container'>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input

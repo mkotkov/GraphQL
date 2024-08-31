@@ -1,109 +1,154 @@
-/* Основной контейнер для всех графиков */
 .graphs-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
+  display: grid;
+  grid: auto-flow / 1fr 2fr;
+  gap: 1rem;
+  padding: 0 3rem;
+}
+
+/* style for graph */
+.graph {
+  background: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 2rem;
+}
+
+#timeLine{
+  height: 100%;
+}
+
+.total{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   
-  /* Контейнер для графиков */
-  .graph {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  /* Заголовок графиков */
-  .graph h3 {
-    margin: 0;
-    color: #333;
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
-  /* Селектор периода для XP графика */
-  .period-selector {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .period-selector label {
-    font-size: 1em;
-    color: #333;
-  }
-  
-  .period-selector select {
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1em;
-  }
-  
-  /* Графики Recharts */
-  .recharts-wrapper {
-    margin: 0 auto;
-    width: 100%;
-  }
-  
-  /* Стиль для полос в аудите */
-  .audit-ratio {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .audit-ratio__bars {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .audit-ratio__bar {
-    height: 20px;
-    border-radius: 10px;
-  }
-  
-  .audit-ratio__bar--done {
-    background-color: #4caf50;
-    flex: 1;
-  }
-  
-  .audit-ratio__bar--received {
-    background-color: #f44336;
-    flex: 1;
-  }
-  
-  .audit-ratio__info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1em;
-    color: #666;
-  }
-  
-  .audit-ratio__info-item {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .audit-ratio__result {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .audit-ratio__result-number {
-    font-size: 2em;
-    font-weight: bold;
-  }
-  
-  .audit-ratio__result-label {
-    font-size: 1em;
-    color: #333;
-  }
-  
+}
+
+.total h1{
+  font-size: 3rem;
+}
+
+/* title graph */
+.graph h3 {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/*  XP */
+.period-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.period-selector label {
+  font-size: 1em;
+  color: #e0e0e0;
+}
+
+.period-selector select {
+  padding: 5px 10px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #333;
+  color: #e0e0e0;
+  font-size: 1em;
+}
+
+/* Recharts */
+.recharts-wrapper {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.audit-ratio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #e0e0e0;
+}
+
+.bars-container {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.bar {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background-color: #8884d8;
+}
+
+.done-bar .bar-fill {
+  background-color: #00b894;
+}
+
+.received-bar .bar-fill {
+  background-color: #8884d8;
+}
+
+.audit-info {
+  display: flex;
+  width: 100%;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.audit-info :nth-child(2) {
+  display: flex;
+  width: 17%;
+  font-size: 0.9em;
+}
+
+.audit-info :nth-child(3),.audit-info :nth-child(1){
+  padding-right: 8rem;
+}
+
+.ratio-result {
+  text-align: center;
+}
+
+.ratio-result h1 {
+  margin: 10px 0;
+  font-size: 2.5em;
+  color: #00b894;
+}
+
+.ratio-result p {
+  margin: 0;
+  color: #e0e0e0;
+  font-size: 1.2em;
+}
+/* Top 6 Projects by XP */
+.project-list {
+  display: grid;
+  grid: auto-flow / 1fr 1fr;
+  gap: 1rem;
+  margin: 0;
+  margin-bottom: 3rem;
+}
+
+.project-list li {
+  list-style: none;
+  font-size: 1em;
+  color: #e0e0e0;
+  padding: 0.8rem;
+  background-color: #2a2a2a;
+  border-radius: 4px;
+}

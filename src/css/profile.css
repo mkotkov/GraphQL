@@ -1,0 +1,67 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 15px 25px;
+    background-color: #0c0c0c;
+    z-index: 1000;
+}
+
+.title{
+    margin-top: 8rem;
+    margin-left: 2rem;
+    font-weight: 700;
+    font-size: 24px;
+    padding-bottom: 2rem;
+}
+  
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo h1 {
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+}
+
+.user-container {
+   display: flex;
+   flex-direction: row;
+}
+
+.user-container:hover {
+    background-color: var(--grey);
+}
+
+.login{
+    display: flex;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-family: var(--font);
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.logout-button{
+    background-color: #0c0c0c;
+    border: none;
+    cursor:pointer;
+}
+
+.logout-button span{
+    margin: 0 5rem 0 1rem;
+    color: wheat;
+}
+
+.logout-button:hover {
+    color: #131313;
+}

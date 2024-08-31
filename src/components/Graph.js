@@ -7,11 +7,6 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
   ResponsiveContainer,
 } from 'recharts';
 import '../css/graph.css'; // Убедитесь, что путь к CSS корректен
@@ -102,7 +97,7 @@ const Graph = ({ userId }) => {
       acc.push({ name: curr.object.name, value: curr.amount });
     }
     return acc;
-  }, []).sort((a, b) => b.value - a.value).slice(0, 5);
+  }, []).sort((a, b) => b.value - a.value).slice(0, 6);
 
   const doneAuditsTotal = auditData
     .filter((audit) => audit.type === 'up')
@@ -110,17 +105,67 @@ const Graph = ({ userId }) => {
   const receivedAuditsTotal = auditData
     .filter((audit) => audit.type === 'down')
     .reduce((sum, audit) => sum + audit.amount, 0);
-  const doneAuditsMB = (doneAuditsTotal / (1000 * 1000)).toFixed(2);
-  const receivedAuditsMB = (receivedAuditsTotal / (1000 * 1000)).toFixed(2);
-  const donePercentage = (doneAuditsTotal / (doneAuditsTotal + receivedAuditsTotal) * 100).toFixed(2);
-  const receivedPercentage = (receivedAuditsTotal / (doneAuditsTotal + receivedAuditsTotal) * 100).toFixed(2);
-  const ratio = (doneAuditsTotal / receivedAuditsTotal).toFixed(1);
 
   if (loadingUserData || loadingProjectXP || loadingAudits) return <p>Loading...</p>;
   if (errorUserData || errorProjectXP || errorAudits) return <p>Error: {errorUserData?.message || errorProjectXP?.message || errorAudits?.message}</p>;
 
   return (
     <div className="graphs-container">
+      <div className="graph">
+        <div className='total'>
+        <h3>Total XP:</h3>
+        <h1>{projectXPData.reduce((sum, project) => sum + project.amount, 0).toFixed(2)} XP</h1>
+        </div>
+
+        <h3>Top 6 Projects by XP</h3>
+        <div>
+          <ul className="project-list">
+            {processedProjectXPData.map((project) => (
+              <li key={project.name}>
+                {project.name} - {project.value.toFixed(2)} XP
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="ratio">
+          <h3>Audits Ratio</h3>
+          <div className="audit-ratio-container">
+            <div className="bars-container">
+              <div className="bar done-bar">
+                <div
+                  className="bar-fill"
+                  style={{
+                    width: `${(doneAuditsTotal / (doneAuditsTotal + receivedAuditsTotal)) * 100}%`,
+                  }}
+                ></div>
+              </div>
+              <div className="bar received-bar">
+                <div
+                  className="bar-fill"
+                  style={{
+                    width: `${(receivedAuditsTotal / (doneAuditsTotal + receivedAuditsTotal)) * 100}%`,
+                  }}
+                ></div>
+              </div>
+            </div>
+            <div className="audit-info">
+              <span>{(doneAuditsTotal / (1000 * 1000)).toFixed(2)} MB</span>
+              <span>Done ↑</span>
+              <span>{(receivedAuditsTotal / (1000 * 1000)).toFixed(2)} MB</span>
+              <span>Received ↓</span>
+            </div>
+            <div className="ratio-result">
+              <h1>{(doneAuditsTotal / receivedAuditsTotal).toFixed(1)}</h1>
+              <p>
+                {(doneAuditsTotal / receivedAuditsTotal).toFixed(1) >= 1.5
+                  ? 'Almost perfect!'
+                  : 'Keep pushing!'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="graph">
         <h3>XP Progression Over Time</h3>
         <div className="period-selector">
@@ -132,7 +177,7 @@ const Graph = ({ userId }) => {
             <option value="all">All time</option>
           </select>
         </div>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height="90%">
           <LineChart
             data={filteredXPData.map((d) => ({
               ...d,
@@ -146,42 +191,6 @@ const Graph = ({ userId }) => {
             <Line type="monotone" dataKey="amount" stroke="#8884d8" />
           </LineChart>
         </ResponsiveContainer>
-      </div>
-      <div className="graph">
-        <h3>Top 5 Projects by XP</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <RadarChart data={processedProjectXPData}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="name" />
-            <PolarRadiusAxis />
-            <Radar name="XP" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-            <Tooltip />
-            <Legend />
-          </RadarChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="graph">
-        <h3>Audits Ratio</h3>
-        <div className="audit-ratio">
-          <div className="audit-ratio__bars">
-            <div className="audit-ratio__bar audit-ratio__bar--done" style={{ width: `${donePercentage}%` }} />
-            <div className="audit-ratio__bar audit-ratio__bar--received" style={{ width: `${receivedPercentage}%` }} />
-          </div>
-          <div className="audit-ratio__info">
-            <div className="audit-ratio__info-item">
-              <span>Done</span>
-              <span>{doneAuditsMB} MB</span>
-            </div>
-            <div className="audit-ratio__info-item">
-              <span>Received</span>
-              <span>{receivedAuditsMB} MB</span>
-            </div>
-          </div>
-          <div className="audit-ratio__result">
-            <div className="audit-ratio__result-number">{ratio}</div>
-            <div className="audit-ratio__result-label">Ratio</div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -36,10 +36,6 @@ function App() {
               <>
                 <Profile userId={userId} />
                 <Graph userId={userId} />
-                <button onClick={() => {
-                  setToken(null);
-                  localStorage.removeItem('jwt');
-                }}>Logout</button>
               </>
             ) : (
               <p>Invalid token. Please log in again.</p>

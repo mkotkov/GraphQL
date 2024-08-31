@@ -1,0 +1,62 @@
+/* login.css */
+
+
+.login-container {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 15vW;
+    margin: 15rem auto;
+
+    background-color: #1e1e1e;
+    padding: 0 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #333; /* Темная граница инпутов */
+    border-radius: 4px;
+    background-color: #2a2a2a; /* Темный фон инпутов */
+    color: #e0e0e0; /* Светлый цвет текста */
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #8884d8; /* Цвет границы при фокусе */
+    outline: none;
+}
+
+button {
+    padding: 0.75rem;
+    background-color: #8884d8; /* Основной цвет кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+@media (max-width: 400px) {
+    .login-container {
+        width: 100%;
+        padding: 1rem;
+        box-shadow: none;
+    }
+}
