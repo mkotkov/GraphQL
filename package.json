@@ -1,6 +1,7 @@
 {
   "name": "graphql",
   "version": "0.1.0",
+  "homepage": "https://mkotkov.github.io/GraphQL/",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.11.4",
@@ -11,6 +12,7 @@
     "chart.js": "^4.4.4",
     "d3": "^7.9.0",
     "formik": "^2.4.6",
+    "gh-pages": "^6.1.1",
     "graphql": "^16.9.0",
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
@@ -25,7 +27,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
