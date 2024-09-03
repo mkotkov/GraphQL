@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Graphql
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+- [Project Description](#project-description)
+- [How to Run the Project](#how-to-run-the-project)
 
-In the project directory, you can run:
+## Project Description
 
-### `npm start`
+The webpage at keitileppik.github.io/graphql/ is a login page for viewing your intra profile information. It consists of:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Header: Displays username and XP for each module/piscine.
+Audit Ratio Section: Shows audits given, received, and the overall ratio.
+Progress Over Time Graph: Visual representation of progress.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to Run the Project
 
-### `npm test`
+Open [link to website](https://mkotkov.github.io/GraphQL/) in your browser and log in using your intra username(email) and password.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Audit
 
-### `npm run build`
+[link to audit](https://01.kood.tech/git/root/public/src/branch/master/subjects/graphql/audit)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Functional
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### Try to log in with invalid credentials
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+###### Is an appropriate error shown?
 
-### `npm run eject`
+##### Ask the student to login with valid credentials
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+###### Does the profile page consist of three sections as required?
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+##### Verify the accuracy of the content/information in the three Sections using **GraphiQL**.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+###### Are the details presented in these sections accurate and correspond to the expected data?
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+###### Does the profile include a fourth section dedicated to graphical statistics?
 
-## Learn More
+###### Does this section contain at least two different graphs created using SVG as specified in the project requirements?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+##### Try to validate the accuracy of the information presented in the graphs.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+###### Do the graphs display the expected data accurately?
 
-### Code Splitting
+##### Try to access the profile from the host domain.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+###### Is the profile successfully accessible and hosted online?
 
-### Analyzing the Bundle Size
+##### Log out
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+###### Is the logout functionality successful in logging the authenticated user out?
 
-### Making a Progressive Web App
+#### General
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+###### Does the project have at least the mandatory queries (_nested_, _normal_ and using _arguments_)?
