@@ -8,6 +8,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
 } from 'recharts';
 import '../css/graph.css'; // Убедитесь, что путь к CSS корректен
 
@@ -39,6 +42,10 @@ const GET_AUDITS_DATA = gql`
     }
   }
 `;
+
+const COLORS = ['#00b894', '#8A2BE2', '#9370DB', '#00b894', '#BA55D3', '#8884d8'];
+
+
 
 const Graph = ({ userId }) => {
   const { loading: loadingUserData, error: errorUserData, data: dataUserData } = useQuery(GET_USER_DATA_AND_XP, {
@@ -116,17 +123,29 @@ const Graph = ({ userId }) => {
         <h3>Total XP:</h3>
         <h1>{projectXPData.reduce((sum, project) => sum + project.amount, 0).toFixed(2)} XP</h1>
         </div>
-
-        <h3>Top 6 Projects by XP</h3>
         <div>
-          <ul className="project-list">
-            {processedProjectXPData.map((project) => (
-              <li key={project.name}>
-                {project.name} - {project.value.toFixed(2)} XP
-              </li>
-            ))}
-          </ul>
-        </div>
+        <h3>Top 6 Projects by XP</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              data={processedProjectXPData}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              fill="#8884d8"
+              label = "name"
+            >
+              {processedProjectXPData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
         <div className="ratio">
           <h3>Audits Ratio</h3>
           <div className="audit-ratio-container">
