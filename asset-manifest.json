@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/GraphQL/static/css/main.b197f1dd.css",
-    "main.js": "/GraphQL/static/js/main.bfab483c.js",
+    "main.js": "/GraphQL/static/js/main.5c1667a7.js",
     "static/js/453.2717c832.chunk.js": "/GraphQL/static/js/453.2717c832.chunk.js",
     "index.html": "/GraphQL/index.html",
     "main.b197f1dd.css.map": "/GraphQL/static/css/main.b197f1dd.css.map",
-    "main.bfab483c.js.map": "/GraphQL/static/js/main.bfab483c.js.map",
+    "main.5c1667a7.js.map": "/GraphQL/static/js/main.5c1667a7.js.map",
     "453.2717c832.chunk.js.map": "/GraphQL/static/js/453.2717c832.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b197f1dd.css",
-    "static/js/main.bfab483c.js"
+    "static/js/main.5c1667a7.js"
   ]
 }
