@@ -207,7 +207,7 @@ const Graph = ({ userId }) => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="amount" stroke="#8884d8" />
+            <Line type="monotone" dataKey="amount" stroke="#8884d8"/>
           </LineChart>
         </ResponsiveContainer>
       </div>
